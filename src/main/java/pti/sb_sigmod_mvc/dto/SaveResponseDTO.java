@@ -1,0 +1,18 @@
+package pti.sb_sigmod_mvc.dto;
+
+public class SaveResponseDTO {
+
+    private String status = "SAVE_FAILED";
+
+    public void setStatusOK() {
+        this.status = "SAVE_OK";
+    }
+
+    public void setStatusFailed() {
+        this.status = "SAVE_FAILED";
+    }
+
+    public String getStatus() {
+        return status;
+    }
+}

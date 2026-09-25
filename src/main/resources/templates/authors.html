@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+
+<h2>Author search</h2>
+<form method="get" action="/authors/search">
+
+    <input type="text"
+           name="searchKeyWord"
+           placeholder="Search author"
+           th:value="${authorDTO != null ? authorDTO.searchKeyWord : ''}">
+
+    <button type="submit">Search</button>
+
+</form>
+
+<!-------------1. List all position="01"------------->
+<h3>Search results:</h3>
+<div th:each="author : ${searchResultDTO}">
+    <p th:text="${author.getName()}"></p>
+    <p th:text="${author.getCounter()}"></p>
+</div>
+
+<table th:if="${authors!=null}">
+    <tr>
+        <td>Name</td>
+        <td>Count</td>
+    </tr>
+    <tr th:each="author : ${authors}">
+        <td th:text="${author.getName()}"></td>
+        <td th:text="${author.getCounter()}"></td>
+    </tr>
+</table>
+
+<!-------------3. Save ------------->
+
+<form method="post" action="/authors/save">
+    <input type="hidden"
+           name="searchKeyWord"
+           th:value="${authorDTO != null ? authorDTO.searchKeyWord : ''}">
+
+    <label>Save type:</label>
+    <select name="saveType">
+        <option value="database"> DB save</option>
+        <option value="xml"> XML save</option>
+    </select>
+    <button type="submit">Save</button>
+</form>
+
+<div th:if="${saveResponseDTO != null and saveResponseDTO.status == 'SAVE_OK'}">
+    <p>Save Succes!</p>
+</div>
+
+<div th:if="${saveResponseDTO != null and saveResponseDTO.status == 'SAVE_FAILED'}">
+    <p>Save failed !</p>
+</div>
+
+
+</body>
+</html>

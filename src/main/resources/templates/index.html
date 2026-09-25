@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Load data</title></head>
+<body>
+<h2>Load data</h2>
+<form method="get" action="/load">
+    <label>Choose data source:</label>
+    <select name="loadType">
+        <option value="database">Database</option>
+        <option value="xml">XML file</option>
+    </select>
+    <br><br>
+    <label>XML file path:</label>
+    <input type="text" name="xmlPath"
+           placeholder="C:\sigmodRecords.xml">
+    <br><br>
+    <button type="submit">Load</button>
+</form>
+<p th:if="${errorMessage != null}" th:text="${errorMessage}"></p>
+</body>
+</html>
